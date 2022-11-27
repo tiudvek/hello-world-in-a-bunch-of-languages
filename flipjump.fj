@@ -1,0 +1,38 @@
+def startup @ code_start > IO  {
+    ;code_start
+  IO:
+    ;0              // the second op is reserved for Input/Output.
+  code_start:
+}
+
+
+def output_bit bit < IO {
+    IO + bit;       // flipping IO+0 outputs 0; flipping IO+1 outputs 1.
+}
+def output_char ascii {
+    rep(8, i) output_bit ((ascii>>i)&1)
+}
+
+def end_loop @ loop_label {
+    loop_label:
+    ;loop_label     // fj finishes on a self loop
+}
+
+    startup
+    
+    output_char 'H'
+    output_char 'e'
+    output_char 'l'
+    output_char 'l'
+    output_char 'o'
+    output_char ','
+    output_char ' '
+    
+    output_char 'W'
+    output_char 'o'
+    output_char 'r'
+    output_char 'l'
+    output_char 'd'
+    output_char '!'
+    
+    end_loop
